@@ -8,7 +8,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include <math.h>
-#include "testlibrary.h"
+
 #include "gameoflife.h"
 #include "define.h"
 
