@@ -1,38 +1,38 @@
 #include "gameoflife.h"
-
-void gameOfLife(int*** field) {
-  int copy[M][N];
+#include <stdio.h>
+void gameOfLife(int*** field, int rows, int columns) {
+  int copy[rows][columns];
   int m,n;
-  for(m = 0; m < M; m++) {
-    for(n = 0; n < N; n++) {
+  for(m = 0; m < rows; m++) {
+    for(n = 0; n < columns; n++) {
       copy[m][n] = (*field)[m][n];
     }
   }
 
   //printField(copy);
 
-  for(m = 0; m < M; m++) {
-    for(n = 0; n < N; n++) {
+  for(m = 0; m < rows; m++) {
+    for(n = 0; n < columns; n++) {
       int neighbours = 0;
 
       if(m == 0) { //oben
         if(n == 0) //oben links
           neighbours = checkFields(copy, m, m+1, n, n+1, m, n);
-        else if(n == N-1) //oben rechts
+        else if(n == columns-1) //oben rechts
           neighbours = checkFields(copy, m, m+1, n-1, n, m, n);
         else //oben
           neighbours = checkFields(copy, m, m+1, n-1, n+1, m, n);
-      } else if (m == N-1) { // unten
+      } else if (m == rows-1) { // unten
         if(n == 0) //unten links
           neighbours = checkFields(copy, m-1, m, n, n+1, m, n);
-        else if(n == N-1) //unten rechts
+        else if(n == columns-1) //unten rechts
           neighbours = checkFields(copy, m-1, m, n-1, n, m, n);
         else
           neighbours = checkFields(copy,m-1, m, n-1, n+1, m, n);
       } else {
         if(n == 0) //links
           neighbours = checkFields(copy, m-1, m+1, n, n+1, m, n);
-        else if (n == N-1) //rechts
+        else if (n == columns-1) //rechts
           neighbours = checkFields(copy, m-1, m+1, n-1, n, m, n);
         else //sonst
           neighbours = checkFields(copy, m-1, m+1, n-1, n+1, m, n);

@@ -2,9 +2,9 @@ SRC=src/main.c src/testlibrary.c
 HEADER=header/testlibrary.h
 
 
-all: src/main.c
-	gcc src/main.c -o gameoflife -lm
+all: src/*c
+	gcc $^ -Iheader -o gameoflife -lm -std=gnu99
 
-testcase: src/main.c src/testlibrary.c
-	gcc src/main.c src/testlibrary.c -Iheader -o testcase -lm -D'TEST'
+testcase: src/main.c src/testlibrary.c src/matrix.c src/gameoflife.c
+	gcc src/main.c src/testlibrary.c src/matrix.c src/gameoflife.c -Iheader -o testcase -lm -D'TEST' -std=gnu99
 
