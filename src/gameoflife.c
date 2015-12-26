@@ -54,8 +54,7 @@ void gameOfLife(int*** field, int rows, int columns) {
   }
 }
 
-int checkFields(int field[][N], int top, int bottom, int left, int right,
-                int y, int x) {
+__attribute__((always_inline)) int checkFields(int field[][N], int top, int bottom, int left, int right, int y, int x) {
   int neighbours = 0;
   int i,j;
   for(i=top; i<=bottom; i++) {

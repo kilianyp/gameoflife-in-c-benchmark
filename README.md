@@ -14,3 +14,8 @@ no parallelizations
 2nd run: 41.29861s
 3rd run: 41.31800s
 
+Version 1.1:
+check Fields using inline functions
+1st run: 38.26025s
+2nd run: 38.40372s
+3rd run: 38.39163s
