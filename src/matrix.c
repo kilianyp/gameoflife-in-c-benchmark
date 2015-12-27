@@ -49,15 +49,18 @@ int initRandomField(int*** field, int rows, int columns) {
     if(initField(field, rows, columns) < 0)
         return 0;
 
-
+    int ones = 0;
 
     srand(time(0));
     int i,j;
     for(i=0; i<rows; i++) {
-		for(j=0; j<columns; j++)
+		for(j=0; j<columns; j++) {
 			(*field)[i][j] = randomOne();
-
+            if((*field)[i][j])
+                ones +=1;
+        }
     }
+    printf("Matrix initialized with %d ones\n", ones);
 }
 
 

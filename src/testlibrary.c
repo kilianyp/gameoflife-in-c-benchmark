@@ -50,7 +50,7 @@ void testCaseOne()  {
 
 
     int*** resultHeap = copyMatrixToHeap(10,10,result);
-    //printField(resultHeap, 10, 10);
+    printField(resultHeap, 10, 10);
     if(compareFields(matrixHeap, resultHeap, 10, 10))
         printf("testCaseOne successfull!\n");
     else

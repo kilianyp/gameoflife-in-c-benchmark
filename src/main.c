@@ -14,7 +14,6 @@
 #include "testlibrary.h"
 #include "matrix.h"
 
-
 int main() {
 
   #ifdef TEST
@@ -40,7 +39,8 @@ int main() {
     time = ((double)(end-start))/CLOCKS_PER_SEC;
 
     printf("%d iterations of a %dx%d matrix took %fs!\n", ITERATIONS, M,N, time);
-
+    //printField(&matrix,M ,N );
+    cleanMatrix(&matrix);
     return 0;
   #endif
 }
