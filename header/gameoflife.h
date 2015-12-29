@@ -3,4 +3,5 @@
 __attribute__((always_inline))  void updateNeighbours(int top, int bottom, int left, int right,
                                                         int y, int x,size_t columns,int neigbours[][columns]);
 
-void gameOfLife(int*** field, int rows, int columns);
+
+void* gameOfLife(void* threadarg);

@@ -33,7 +33,7 @@ void testCaseOne()  {
 
     printField(matrixHeap, 10, 10);
 
-    gameOfLife(matrixHeap, 10, 10);
+    //gameOfLife(matrixHeap, 10, 10);
 
     printField(matrixHeap, 10, 10);
 
