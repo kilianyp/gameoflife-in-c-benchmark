@@ -2,3 +2,4 @@
 int compareFields(int*** A, int*** B, int columns, int rows);
 int simpleTest();
 void testCaseOne();
+void parallelTest();

@@ -20,7 +20,7 @@ int main()
 
 #ifdef TEST
     printf("test running");
-    testCaseOne();
+    parallelTest();
 #else
     int x = 1;
     int ** matrix;
@@ -35,7 +35,7 @@ int main()
     printf("hello");
     int rc, i;
     pthread_t threads[NTHREADS];
-    thread_data *data = (thread_data*)malloc(sizeof(thread_data));
+    thread_data data[NTHREADS];
 
     //thread_data data[NTHREADS];
 
@@ -43,12 +43,12 @@ int main()
     {
         for(i = 0; i < NTHREADS; ++i) {
 
-            data->thread_id = i;
-            data->field = &matrix;
-            data->rows = M;
-            data->columns = N;
-            printf("thread_id %d", data->thread_id);
-            rc = pthread_create(&threads[i], NULL, gameOfLife,data);
+            data[i].thread_id = i;
+            data[i].field = &matrix;
+            data[i].rows = M;
+            data[i].columns = N;
+            //printf("thread_id %d", data[i].thread_id);
+            rc = pthread_create(&threads[i], NULL, gameOfLife,&data[i]);
             //printField(&matrix, M, N);
 
         }
