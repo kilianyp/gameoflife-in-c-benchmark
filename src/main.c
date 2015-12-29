@@ -9,7 +9,7 @@
 #include <math.h>
 #include <time.h>
 #include <pthread.h>
-
+#include <sys/time.h>
 #include "gameoflife.h"
 #include "define.h"
 #include "testlibrary.h"
@@ -27,12 +27,10 @@ int main()
     initRandomField(&matrix, M, N);
     //printField(&matrix, M, N);
 
-    clock_t start, end;
-    double time;
+    struct timeval t1, t2;
+    double elapsedTime;
 
-
-    start = clock();
-    printf("hello");
+    gettimeofday(&t1, NULL);
     int rc, i;
     pthread_t threads[NTHREADS];
     thread_data data[NTHREADS];
@@ -60,10 +58,10 @@ int main()
         x++;
 
     }
-    end = clock();
-    time = ((double)(end-start))/CLOCKS_PER_SEC;
-
-    printf("%d iterations of a %dx%d matrix took %fs!\n", ITERATIONS, M,N, time);
+    gettimeofday(&t2, NULL);
+    elapsedTime = (t2.tv_sec - t1.tv_sec);
+    elapsedTime += (t2.tv_usec - t1.tv_usec) / 1000000.0;
+    printf("%d iterations of a %dx%d matrix took %fs!\n", ITERATIONS, M,N, elapsedTime);
     //printField(&matrix,M ,N );
     cleanMatrix(&matrix);
     return 0;
