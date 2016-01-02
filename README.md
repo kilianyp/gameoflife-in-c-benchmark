@@ -26,3 +26,8 @@ switched algorithm to only be active if field is one
 2nd run: 14.18841s (499864)  
 3rd run: 14.25374s (499343)  
 
+Version 3:  
+added parallelization  
+1st run: 7.273959s (500396)  
+2nd run: 7.275231s (499394)  
+3rd run: 7.267081s (500693)  
