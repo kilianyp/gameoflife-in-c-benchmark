@@ -82,7 +82,7 @@ int main()
     elapsedTime = (t2.tv_sec - t1.tv_sec);
     elapsedTime += (t2.tv_usec - t1.tv_usec) / 1000000.0;
     printf("%d iterations of a %dx%d matrix took %fs!\n", ITERATIONS, M,N, elapsedTime);
-    printField(&matrix,M ,N );
+    //printField(&matrix,M ,N );
     cleanMatrix(&matrix);
     return 0;
 #endif

@@ -31,3 +31,9 @@ added parallelization
 1st run: 12.349921s (499538)  
 2nd run: 12.693045s (499712)  
 3rd run: 12.428803s (500223)  
+
+Version 3.1:  
+added more parallelization for matrix operations  
+1st run: 8.018553s (499448)  
+2nd run: 8.124357s (499328)  
+3rd run: 8.089620s (500540)
