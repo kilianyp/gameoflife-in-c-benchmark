@@ -28,6 +28,6 @@ switched algorithm to only be active if field is one
 
 Version 3:  
 added parallelization  
-1st run: 7.273959s (500396)  
-2nd run: 7.275231s (499394)  
-3rd run: 7.267081s (500693)  
+1st run: 12.349921s (499538)  
+2nd run: 12.693045s (499712)  
+3rd run: 12.428803s (500223)  
