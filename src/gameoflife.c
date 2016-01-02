@@ -1,6 +1,6 @@
 #include "gameoflife.h"
 #include <stdio.h>
-void gameOfLife(void *threadarg)
+void* gameOfLife(void *threadarg)
 {
 
     thread_data* data = (thread_data*) threadarg;
