@@ -69,7 +69,7 @@ void* updateField(void *threadarg) {
     int row_start = rows_per_thread*(data->thread_id), row_end = rows_per_thread*(data->thread_id+1);
     int num, m, n;
 
-    for(m = 0; m < data->rows; m++)
+    for(m = row_start; m < row_end; m++)
     {
         for(n = 0; n < data->columns; n++)
         {

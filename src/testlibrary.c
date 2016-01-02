@@ -108,6 +108,10 @@ void parallelTest() {
     for(i = 0; i < NTHREADS; ++i)
             pthread_create(&threads[i], NULL, updateField,&testdata[i]);
 
+    /* wait for threads to finish */
+        for(i = 0; i < NTHREADS; ++i)
+            pthread_join ( threads [ i ] , NULL );
+
     printf("print calculated field");
     printField(matrixHeap, 10, 10);
 
