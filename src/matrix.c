@@ -62,11 +62,14 @@ void initRandomField(int*** field, int rows, int columns) {
     printf("Matrix initialized with %d ones\n", ones);
 }
 
-void initNeighbourMatrix(int rows, int columns) {
+void* initNeighbourMatrix(void* threadarg) {
 
+    thread_data* data = (thread_data*) threadarg;
+    int rows_per_thread = data->rows/NTHREADS;
+    int row_start = rows_per_thread*(data->thread_id), row_end = rows_per_thread*(data->thread_id+1);
     int m,n;
-    for (m = 0; m < rows; m++) {
-        for(n = 0; n < columns; n++)
+    for (m = row_start; m < row_end; m++) {
+        for(n = 0; n < data->columns; n++)
             neighbours[m][n] = 0;
     }
 }

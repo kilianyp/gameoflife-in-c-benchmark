@@ -63,22 +63,26 @@ __attribute__((always_inline)) void updateNeighbours(int top, int bottom, int le
     }
 }
 
-void updateField(int*** field, int rows, int columns) {
+void* updateField(void *threadarg) {
+    thread_data* data = (thread_data*) threadarg;
+    int rows_per_thread = data->rows/NTHREADS;
+    int row_start = rows_per_thread*(data->thread_id), row_end = rows_per_thread*(data->thread_id+1);
     int num, m, n;
-    for(m = 0; m < rows; m++)
+
+    for(m = 0; m < data->rows; m++)
     {
-        for(n = 0; n < columns; n++)
+        for(n = 0; n < data->columns; n++)
         {
             num = neighbours[m][n];
             #ifdef TEST
             printf("%d", num);
             #endif // TEST
             if (num < 2) //einsamkeit
-                (*field)[m][n] = 0;
+                (*data->field)[m][n] = 0;
             else if (num == 3) //leben
-                (*field)[m][n] = 1;
+                (*data->field)[m][n] = 1;
             else if (num > 3) //überbevölkerung
-                (*field)[m][n] = 0;
+                (*data->field)[m][n] = 0;
         }
         #ifdef TEST
         printf("\n");

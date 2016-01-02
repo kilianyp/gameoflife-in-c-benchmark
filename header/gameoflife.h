@@ -5,4 +5,4 @@ __attribute__((always_inline))  void updateNeighbours(int top, int bottom, int l
 
 
 void* gameOfLife(void* threadarg);
-void updateField(int*** field, int rows, int columns);
+void* updateField(void* threadarg);

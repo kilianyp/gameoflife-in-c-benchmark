@@ -89,7 +89,7 @@ void parallelTest() {
 
     //thread_data data[NTHREADS];
 
-    initNeighbourMatrix(10, 10);
+    //initNeighbourMatrix(10, 10);
 
     int i;
     for(i = 0; i < NTHREADS; ++i) {
@@ -105,7 +105,8 @@ void parallelTest() {
     for(i = 0; i < NTHREADS; ++i)
             pthread_join ( threads [ i ] , NULL );
 
-    updateField(matrixHeap, 10,10);
+    for(i = 0; i < NTHREADS; ++i)
+            pthread_create(&threads[i], NULL, updateField,&testdata[i]);
 
     printf("print calculated field");
     printField(matrixHeap, 10, 10);
