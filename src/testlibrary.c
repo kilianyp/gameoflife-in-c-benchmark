@@ -89,7 +89,7 @@ void parallelTest() {
 
     //thread_data data[NTHREADS];
 
-    initNeigbourMatrix(10, 10);
+    initNeighbourMatrix(10, 10);
 
     int i;
     for(i = 0; i < NTHREADS; ++i) {

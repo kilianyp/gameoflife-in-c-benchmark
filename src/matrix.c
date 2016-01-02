@@ -62,7 +62,7 @@ void initRandomField(int*** field, int rows, int columns) {
     printf("Matrix initialized with %d ones\n", ones);
 }
 
-void initNeigbourMatrix(int rows, int columns) {
+void initNeighbourMatrix(int rows, int columns) {
 
     int m,n;
     for (m = 0; m < rows; m++) {

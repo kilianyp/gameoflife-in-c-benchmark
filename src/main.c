@@ -47,6 +47,11 @@ int main()
 
     while(x <= ITERATIONS)
     {
+        //global neighbour matrix should be resetted
+
+        initNeighbourMatrix(M, N);
+
+
         for(i = 0; i < NTHREADS; ++i) {
 
             //printf("thread_id %d", data[i].thread_id);
