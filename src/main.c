@@ -6,21 +6,22 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
-#include <time.h>
 #include <pthread.h>
 #include <sys/time.h>
 #include "gameoflife.h"
 #include "define.h"
 #include "testlibrary.h"
 #include "matrix.h"
-
+#ifndef TEST
+    int neighbours[M][N];
+#endif // TEST
 int main()
 {
 
 #ifdef TEST
     printf("test running");
     parallelTest();
+
 #else
     int x = 1;
     int ** matrix;
@@ -31,22 +32,25 @@ int main()
     double elapsedTime;
 
     gettimeofday(&t1, NULL);
-    int rc, i;
+    int i;
     pthread_t threads[NTHREADS];
     thread_data data[NTHREADS];
 
     //thread_data data[NTHREADS];
 
+    for(i = 0; i < NTHREADS; i++) {
+        data[i].thread_id = i;
+        data[i].field = &matrix;
+        data[i].rows = M;
+        data[i].columns = N;
+    }
+
     while(x <= ITERATIONS)
     {
         for(i = 0; i < NTHREADS; ++i) {
 
-            data[i].thread_id = i;
-            data[i].field = &matrix;
-            data[i].rows = M;
-            data[i].columns = N;
             //printf("thread_id %d", data[i].thread_id);
-            rc = pthread_create(&threads[i], NULL, gameOfLife,&data[i]);
+            pthread_create(&threads[i], NULL, gameOfLife,&data[i]);
             //printField(&matrix, M, N);
 
         }
@@ -54,7 +58,9 @@ int main()
         for(i = 0; i < NTHREADS; ++i)
             pthread_join ( threads [ i ] , NULL );
 
-        printf("iteration %d\n", x);
+        updateField(&matrix, M, N);
+
+        //printf("iteration %d\n", x);
         x++;
 
     }

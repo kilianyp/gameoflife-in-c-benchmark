@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
 //print field
 void printField(int*** field, int rows, int columns) {
 
@@ -45,9 +44,9 @@ int initField(int*** field, int rows, int columns) {
 	return 1;
 }
 
-int initRandomField(int*** field, int rows, int columns) {
+void initRandomField(int*** field, int rows, int columns) {
     if(initField(field, rows, columns) < 0)
-        return 0;
+        return;
 
     int ones = 0;
 
@@ -61,6 +60,15 @@ int initRandomField(int*** field, int rows, int columns) {
         }
     }
     printf("Matrix initialized with %d ones\n", ones);
+}
+
+void initNeigbourMatrix(int rows, int columns) {
+
+    int m,n;
+    for (m = 0; m < rows; m++) {
+        for(n = 0; n < columns; n++)
+            neighbours[m][n] = 0;
+    }
 }
 
 

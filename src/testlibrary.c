@@ -1,10 +1,13 @@
 #include "testlibrary.h"
+
 #include "matrix.h"
 #include "gameoflife.h"
 #include <stdio.h>
 #include <pthread.h>
 #include <stdlib.h>
-
+#ifdef TEST
+    int neighbours[10][10];
+#endif // TEST
 int compareFields(int*** A, int*** B, int rows, int columns) {
     int m,n;
     for(m = 0; m < rows; m++) {
@@ -65,7 +68,7 @@ void testCaseOne()  {
 }
 
 void parallelTest() {
-        int matrix[10][10] = {{0, 0, 1, 0, 0, 1, 0, 1, 0,1 },
+    int matrix[10][10] = {{0, 0, 1, 0, 0, 1, 0, 1, 0,1 },
                           {0, 0, 1, 1, 0, 1, 1, 1, 0,1 },
                           {1, 0, 1, 0, 0, 0, 0, 1, 0,1 },
                           {0, 0, 1, 1, 0, 1, 0, 1, 0,1 },
@@ -78,33 +81,31 @@ void parallelTest() {
 
     int*** matrixHeap = copyMatrixToHeap(10,10,matrix);
 
-    printf("print original field");
+    printf("print original field\n");
     printField(matrixHeap, 10, 10);
-
+    printf("\n\n");
     pthread_t threads[NTHREADS];
-    thread_data *data = (thread_data*)malloc(sizeof(thread_data));
-    thread_data testdata;
+    thread_data testdata[NTHREADS];
 
     //thread_data data[NTHREADS];
 
+    initNeigbourMatrix(10, 10);
+
     int i;
     for(i = 0; i < NTHREADS; ++i) {
-
-        data->thread_id = i;
-        data->field = matrixHeap;
-        data->rows = 10;
-        data->columns = 10;
-        testdata.thread_id = i;
-        testdata.field = matrixHeap;
-        testdata.rows = 10;
-        testdata.columns = 10;
-        printf("thread_id %d", data->thread_id);
-        pthread_create(&threads[i], NULL, gameOfLife,&testdata);
+        testdata[i].thread_id = i;
+        testdata[i].field = matrixHeap;
+        testdata[i].rows = 10;
+        testdata[i].columns = 10;
+        //printf("thread_id %d", data->thread_id);
+        pthread_create(&threads[i], NULL, gameOfLife,&testdata[i]);
         //printField(&matrix, M, N);
 
     }
     for(i = 0; i < NTHREADS; ++i)
             pthread_join ( threads [ i ] , NULL );
+
+    updateField(matrixHeap, 10,10);
 
     printf("print calculated field");
     printField(matrixHeap, 10, 10);

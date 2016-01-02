@@ -13,4 +13,9 @@ typedef struct{
     int rows; //rows of the processed matrix
     int columns; //columns of the whole processed matrix
 } thread_data;
+#ifdef TEST
+    extern int neighbours[][10];
+#else
+    extern int neighbours[][N];
+#endif // TEST
 #endif
